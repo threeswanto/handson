@@ -7,5 +7,7 @@ class Strings {
 
   static const TITLE_DETAIL = "Detail";
 
+  static const Error = "Periksa Internet Anda, Tap untuk Reload";
+
 
 }

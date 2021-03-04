@@ -20,6 +20,7 @@ class _DetailScreenState extends State<DetailScreen> {
         backgroundColor: Colors.red,
       ),
       body: Container(
+        padding: EdgeInsets.all(20),
         child: Column(
           children: [
             Column(

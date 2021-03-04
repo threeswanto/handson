@@ -5,7 +5,8 @@ import 'package:dayalima_handson/base/url.dart';
 import 'package:dayalima_handson/model/index_data.dart';
 
 class MenuRepository {
-  void doGetList(String menu, onSuccess, onError) async {
+  void doGetList(String menu, onLoading, onSuccess, onError) async {
+    onLoading();
     try {
       var url = BASE_URL + menu;
       var response = await API(BASE_URL).ioClient.get(
@@ -19,7 +20,7 @@ class MenuRepository {
         onError();
       }
     } catch (exception) {
-      onError(exception);
+      onError();
     }
   }
 }

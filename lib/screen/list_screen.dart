@@ -29,32 +29,42 @@ class _ListScreenState extends State<ListScreen> {
       ),
       body: Center(
         child: Consumer<ListProvider>(builder: (context, data, child) {
-          return ListView.builder(
-              itemCount: data.listDetailData.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin: EdgeInsets.all(30),
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                  dataDetail: data.listDetailData[index])));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          Image.network(data.listDetailData[index].img,
-                              height: 100),
-                          Text(data.listDetailData[index].name)
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              });
+          return data.isLoading
+              ? CircularProgressIndicator()
+              : data.listDetailData.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: data.listDetailData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.all(30),
+                          child: RaisedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailScreen(
+                                          dataDetail:
+                                              data.listDetailData[index])));
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Image.network(data.listDetailData[index].img,
+                                      height: 100),
+                                  Text(data.listDetailData[index].name)
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      })
+                  : InkWell(
+                      onTap: () {
+                        context.read<ListProvider>().fetchListData(widget.menu);
+                      },
+                      child: Text(Strings.Error),
+                    );
         }),
       ),
     );

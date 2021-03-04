@@ -10,10 +10,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String menuInit = "index.json";
+
   @override
   void initState() {
-    String menu = "index.json";
-    context.read<MenuProvider>().fetchListData(menu);
+    context.read<MenuProvider>().fetchListData(menuInit);
     super.initState();
   }
 
@@ -26,31 +27,42 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Center(
         child: Consumer<MenuProvider>(builder: (context, menu, child) {
-          return ListView.builder(
-              itemCount: menu.listData.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin: EdgeInsets.all(30),
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ListScreen(
-                                  menu: menu.listData[index].listData)));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          Image.network(menu.listData[index].img, height: 100),
-                          Text(menu.listData[index].name)
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              });
+          return menu.isLoading
+              ? CircularProgressIndicator()
+              : menu.listData.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: menu.listData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.all(30),
+                          child: RaisedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ListScreen(
+                                          menu:
+                                              menu.listData[index].listData)));
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Image.network(menu.listData[index].img,
+                                      height: 100),
+                                  Text(menu.listData[index].name)
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      })
+                  : InkWell(
+                      onTap: () {
+                        context.read<MenuProvider>().fetchListData(menuInit);
+                      },
+                      child: Text(Strings.Error),
+                    );
         }),
       ),
     );
