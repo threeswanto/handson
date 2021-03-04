@@ -2,5 +2,5 @@
 
 A new Flutter application.
 
-with Provider state management;
+with Provider state management
 fetch data repository
