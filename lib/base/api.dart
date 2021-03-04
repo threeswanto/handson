@@ -10,15 +10,7 @@ class API {
     this.baseUrl = baseUrl;
     HttpClient httpClient = new HttpClient()
       ..badCertificateCallback =
-      ((X509Certificate cert, String host, int port) => true);
+          ((X509Certificate cert, String host, int port) => true);
     this.ioClient = new IOClient(httpClient);
-  }
-
-  Map<String, String> getDefaultHeader() {
-    Map<String, String> headers = {
-      "Content-type": "application/json",
-      "Accept": "application/json",
-    };
-    return headers;
   }
 }

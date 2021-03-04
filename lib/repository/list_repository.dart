@@ -9,10 +9,7 @@ class ListRepository {
     onLoading();
     try {
       var url = BASE_URL + menu;
-      var response = await API(BASE_URL).ioClient.get(
-            url,
-            headers: API(BASE_URL).getDefaultHeader(),
-          );
+      var response = await API(BASE_URL).ioClient.get(url);
       ListData apiResponse = ListData.fromJson(json.decode(response.body));
       if (apiResponse.data.isNotEmpty) {
         onSuccess(apiResponse.data);

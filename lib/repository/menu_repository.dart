@@ -9,10 +9,7 @@ class MenuRepository {
     onLoading();
     try {
       var url = BASE_URL + menu;
-      var response = await API(BASE_URL).ioClient.get(
-        url,
-        headers: API(BASE_URL).getDefaultHeader(),
-      );
+      var response = await API(BASE_URL).ioClient.get(url);
       IndexData apiResponse = IndexData.fromJson(json.decode(response.body));
       if (apiResponse.data.isNotEmpty) {
         onSuccess(apiResponse.data);
