@@ -24,7 +24,7 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Strings.TITLE_COMMUNITY_LIST),
+        title: Text(widget.menu.substring(0, widget.menu.length-5)),
         backgroundColor: Colors.red,
       ),
       body: Center(
@@ -36,7 +36,7 @@ class _ListScreenState extends State<ListScreen> {
                       itemCount: data.listDetailData.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          margin: EdgeInsets.all(30),
+                          margin: EdgeInsets.all(10),
                           child: RaisedButton(
                             onPressed: () {
                               Navigator.push(

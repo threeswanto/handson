@@ -1,6 +1,6 @@
 class Strings {
 
-  static const APP_NAME = "Dayalima Handson";
+  static const APP_NAME = "Dayalima HandsOn";
   static const TITLE_COMPANY_LIST = "Company";
   static const TITLE_COMMUNITY_LIST = "Community";
   static const TITLE_EDUCATIONAL_LIST = "Educational";

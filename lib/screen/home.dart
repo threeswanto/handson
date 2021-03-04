@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: menu.listData.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          margin: EdgeInsets.all(30),
+                          margin: EdgeInsets.all(16),
                           child: RaisedButton(
                             onPressed: () {
                               Navigator.push(

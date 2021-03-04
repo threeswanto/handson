@@ -16,7 +16,6 @@ class ListProvider extends ChangeNotifier {
   onLoading() {
     _listDetailData = [];
     _isLoading = true;
-    notifyListeners();
   }
 
   onSuccess(List<DataDetail> dataDetail) {

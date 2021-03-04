@@ -16,7 +16,6 @@ class MenuProvider extends ChangeNotifier {
   onLoading() {
     _listData = [];
     _isLoading = true;
-    notifyListeners();
   }
 
   onSuccess(List<Data> dataDetail) {
